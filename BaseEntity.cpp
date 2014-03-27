@@ -54,14 +54,14 @@ int BaseEntity::getEntityID() const
     return mEntityID;
 }
 
-void BaseEntity::setComponentManager(std::shared_ptr<ComponentManager> componentManager)
+void BaseEntity::setComponentManager(ComponentManager *componentManager)
 {
     if (mComponentManager != nullptr)
         return;
     mComponentManager = componentManager;
 }
 
-std::shared_ptr<ComponentManager> BaseEntity::getComponentManager()
+zmc::ComponentManager *BaseEntity::getComponentManager()
 {
     return mComponentManager;
 }
