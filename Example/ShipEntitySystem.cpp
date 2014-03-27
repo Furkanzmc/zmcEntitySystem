@@ -16,7 +16,7 @@ bool ShipEntitySystem::checkForProcessing()
 
 void ShipEntitySystem::setRequiredComponentTypes(std::vector<int> requiredComponentTypes)
 {
-    mRequiredComponentTypes = requiredComponentTypes;
+    setRequiredComponentTypes(requiredComponentTypes);
 }
 
 void ShipEntitySystem::processEntity(BaseEntity &entity)
