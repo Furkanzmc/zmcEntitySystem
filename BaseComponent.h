@@ -10,14 +10,14 @@ class BaseComponent
 public:
     BaseComponent(int componentType);
     virtual ~BaseComponent();
-    virtual bool canBeRemoved();
-    virtual void removeComponent();
+    bool canBeRemoved();
+    void removeComponent();
     /**
      * @brief Returns a non-zero number if the component has a group
      */
-    virtual int getGroup();
-    virtual void setGroup(int groupIdentifier);
-    virtual int getType();
+    int getGroup();
+    void setGroup(int groupIdentifier);
+    int getType();
 
 private:
     bool mCanBeRemoved = false;
