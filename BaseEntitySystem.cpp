@@ -44,7 +44,7 @@ bool BaseEntitySystem::checkForEntity(BaseEntity &entity)
     if (mRequiredComponentTypes.size() == 0)
         return true;
     bool isEligible = false;
-    std::vector<BaseComponent*> vector = entity.getComponentManager()->getComponentsOfEntity(entity.getEntityID());
+    const std::vector<BaseComponent*> vector = entity.getComponentManager()->getComponentsOfEntity(entity.getEntityID());
     int numberOfElligableComponents = 0;
     for (BaseComponent *component : vector) {
         for (int componentType : mRequiredComponentTypes) {
@@ -67,5 +67,10 @@ void BaseEntitySystem::addEntity(BaseEntity &entity)
     if (checkForEntity(entity) == false)
         return;
     mEntityVector.push_back(&entity);
+}
+
+void BaseEntitySystem::setRequiredComponents(std::vector<int> requiredComponentTypes)
+{
+    mRequiredComponentTypes = requiredComponentTypes;
 }
 }

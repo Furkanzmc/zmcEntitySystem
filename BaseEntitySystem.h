@@ -18,15 +18,8 @@ public:
      * @brief Use this function to process your entites. This function calls begin(); and end(); and your processEntities(); function.
      */
     void process();
-    virtual void removeEntityFromSystem(BaseEntity &entity);
-    virtual void addEntity(BaseEntity &entity);
-
-protected:
-    std::vector<BaseEntity*> mEntityVector;
-    /**
-     * @brief If the mRequiredComponentTypes is empty that means this system can take any component and process them
-     */
-    std::vector<int> mRequiredComponentTypes;
+    void removeEntityFromSystem(BaseEntity &entity);
+    void addEntity(BaseEntity &entity);
 
 protected:
     /**
@@ -46,16 +39,24 @@ protected:
      * @brief Checks if the entity has the necessay components for this entity system
      * @return
      */
-    virtual bool checkForEntity(BaseEntity &entity);
-    virtual void setRequiredComponentTypes() = 0;
+    bool checkForEntity(BaseEntity &entity);
+    virtual void setRequiredComponentTypes(std::vector<int> requiredComponentTypes) = 0;
     virtual void processEntity(BaseEntity &entity) = 0;
+    void setRequiredComponents(std::vector<int> requiredComponentTypes);
+
+private:
+    std::vector<BaseEntity*> mEntityVector;
+    /**
+     * @brief If the mRequiredComponentTypes is empty that means this system can take any component and process them
+     */
+    std::vector<int> mRequiredComponentTypes;
 
 private:
     /**
      * @brief Implement this functon for the entity system to work.
      * Process the entities to your will.
      */
-    virtual void processEntities();
+    void processEntities();
 };
 }
 #endif // BASEENTITYSYSTEM_H
