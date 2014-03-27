@@ -2,7 +2,7 @@
 
 namespace zmc
 {
-EntityManager::EntityManager(std::shared_ptr<ComponentManager> componentManager)
+EntityManager::EntityManager(ComponentManager *componentManager)
     : mLastEntityID(0)
     , mComponentManager(componentManager)
 {
