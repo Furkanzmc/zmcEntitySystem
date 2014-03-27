@@ -12,7 +12,7 @@ namespace zmc
 class EntityManager
 {
 public:
-    EntityManager(std::shared_ptr<ComponentManager> componentManager);
+    explicit EntityManager(ComponentManager *componentManager);
     ~EntityManager();
     template <class E>
     /**
@@ -66,7 +66,7 @@ public:
 private:
     int mLastEntityID;
     std::map<int, std::unique_ptr<BaseEntity>> mEntityMap;
-    std::shared_ptr<ComponentManager> mComponentManager;
+    ComponentManager *mComponentManager;
 };
 }
 #endif // ENTITYMANAGER_H
