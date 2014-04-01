@@ -8,11 +8,6 @@ EntityManager::EntityManager(ComponentManager *componentManager)
 {
 }
 
-EntityManager::~EntityManager()
-{
-
-}
-
 int EntityManager::getEntityCount()
 {
     return mEntityMap.size();
