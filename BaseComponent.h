@@ -8,7 +8,7 @@ namespace zmc
 class BaseComponent
 {
 public:
-    BaseComponent(int componentType);
+    explicit BaseComponent(int componentType);
     virtual ~BaseComponent();
     bool canBeRemoved();
     void removeComponent();
