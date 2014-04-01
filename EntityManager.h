@@ -3,6 +3,7 @@
 #include "BaseEntity.h"
 #include <map>
 #include <memory>
+#include <cassert>
 
 /**
  * @brief The EntityManager class: It manages the removal, creation and processing of the entities.
@@ -13,21 +14,21 @@ class EntityManager
 {
 public:
     explicit EntityManager(ComponentManager *componentManager);
-    ~EntityManager();
-    template <class E>
     /**
      * @brief Creates an entity with the default component manager and gives it a unique ID. If you don't want any group, just pass -1
      * @param groupIdentifier
      * @return
      */
-    E* createEntity(int groupIdentifier)
+    template <class E>
+    E * const createEntity(int groupIdentifier)
     {
-        std::unique_ptr<BaseEntity> entity(new E());
+        std::unique_ptr<E> entity(new E());
         entity->setEntityID(mLastEntityID++);
         entity->setGroup(groupIdentifier);
         entity->setComponentManager(mComponentManager);
         mEntityMap.insert(std::make_pair(mLastEntityID , std::move(entity)));
-        return dynamic_cast<E*>(mEntityMap.at(mLastEntityID).get());
+        assert((void*)dynamic_cast<E*>(mEntityMap.at(mLastEntityID).get()) && "Member does not point to the wanted type!");
+        return static_cast<E*>(mEntityMap.at(mLastEntityID).get());
     }
 
     /**
@@ -36,9 +37,10 @@ public:
      * @return
      */
     template <class Entity>
-    BaseEntity* getEntity(int entityID)
+    Entity* const getEntity(int entityID)
     {
-        return dynamic_cast<Entity*>(mEntityMap.at(entityID).get());
+        assert((void*)dynamic_cast<Entity*>(mEntityMap.at(entityID).get()) && "Member does not point to the wanted type!");
+        return static_cast<Entity*>(mEntityMap.at(entityID).get());
     }
 
     /**
@@ -65,6 +67,9 @@ public:
 
 private:
     int mLastEntityID;
+    /**
+     * @brief int --> Entity ID
+     */
     std::map<int, std::unique_ptr<BaseEntity>> mEntityMap;
     ComponentManager *mComponentManager;
 };
