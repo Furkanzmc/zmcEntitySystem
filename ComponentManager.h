@@ -15,7 +15,6 @@ class ComponentManager
 {
 public:
     ComponentManager();
-    ~ComponentManager();
     /**
      * @brief Adds a component to the entity
      */
@@ -39,7 +38,7 @@ public:
     void removeComponentsOfEntity(BaseEntity &entity);
     std::vector<BaseComponent*> getComponentsOfEntity(int entityID);
     template <class Com>
-    Com* getComponentOfEntity(int entityID)
+    Com * const getComponentOfEntity(int entityID)
     {
         BaseComponent *c = nullptr;
         for (std::pair<const int, std::unique_ptr<BaseComponent>> &pair : mComponentsMap) {
