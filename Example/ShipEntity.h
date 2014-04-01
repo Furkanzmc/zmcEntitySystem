@@ -11,6 +11,7 @@ public:
     ShipEntity();
     ~ShipEntity();
     void update();
+    int as;
 
 private:
     sf::Texture texture;
