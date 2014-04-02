@@ -16,8 +16,17 @@ public:
      * @brief Returns the groups that the cmponent has
      */
     std::vector<int> getGroups();
+    /**
+     * @brief This overwrites the existing groups that the component has
+     * @param numberOfGroupsToAdd
+     */
     void setGroups(int numberOfGroupsToAdd, ...);
     void setGroups(std::vector<int> groups);
+    /**
+     * @brief Adds a group to the already existing groups
+     * @param groupIdentifier
+     */
+    void addGroup(int groupIdentifier);
     /**
      * @brief Returns true if the component is in the specified group
      * @param groupIdentifier
