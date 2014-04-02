@@ -23,7 +23,7 @@ void BaseComponent::setGroups(int numberOfGroupsToAdd, ...)
     va_list arguments;
     va_start(arguments, numberOfGroupsToAdd);
     for (int x = 0; x < numberOfGroupsToAdd; x++) {
-        int g = va_arg(arguments, int);
+        const int g = va_arg(arguments, int);
         if (isInGroup(g) == false)
             mComponentGroups.push_back(g);
     }
