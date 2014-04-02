@@ -73,4 +73,18 @@ bool ComponentManager::hasComponent(int entityID, int componentType)
     }
     return has;
 }
+
+std::vector<BaseComponent*> ComponentManager::getComponentsInGroup(int groupIdentifier)
+{
+    std::vector<BaseComponent*> group;
+    for (std::pair<const int, std::unique_ptr<BaseComponent>> &pair : mComponentsMap) {
+        std::vector<int> groups = pair.second->getGroups();
+        for (int groupName : groups) {
+            if (groupName == groupIdentifier) {
+                group.push_back(mComponentsMap.at(pair.first).get());
+            }
+        }
+    }
+    return group;
+}
 }

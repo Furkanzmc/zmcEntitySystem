@@ -50,12 +50,19 @@ public:
         return dynamic_cast<Com*>(c);
     }
 
+    /**
+     * @brief Returns true if the specified entity has the compoenent type
+     * @param entityID
+     * @param componentType
+     * @return
+     */
     bool hasComponent(int entityID, int componentType);
-
     /**
      * @brief Removes all of the components from the ComponentManager
      */
     void clean();
+
+    std::vector<BaseComponent*> getComponentsInGroup(int groupIdentifier);
 
 private:
     /**
