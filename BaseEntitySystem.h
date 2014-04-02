@@ -42,6 +42,7 @@ protected:
      */
     bool checkForEntity(BaseEntity &entity);
     virtual void processEntity(BaseEntity &entity) = 0;
+    void setRequiredGroups(std::vector<int> requiredGroups);
 
 private:
     std::vector<BaseEntity*> mEntityVector;
@@ -49,6 +50,7 @@ private:
      * @brief If the mRequiredComponentTypes is empty that means this system can take any component and process them
      */
     std::vector<int> mRequiredComponentTypes;
+    std::vector<int> mRequiredGroups;
 
 private:
     /**

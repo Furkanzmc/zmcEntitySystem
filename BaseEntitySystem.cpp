@@ -41,19 +41,32 @@ void BaseEntitySystem::end()
 
 bool BaseEntitySystem::checkForEntity(BaseEntity &entity)
 {
-    //If the mRequiredComponentTypes is empty that means this system can take any component and process them
-    if (mRequiredComponentTypes.size() == 0)
+    if (mRequiredComponentTypes.size() == 0 && mRequiredGroups.size() == 0)
         return true;
     bool isEligible = false;
-    const std::vector<BaseComponent*> vector = entity.getComponentManager()->getComponentsOfEntity(entity.getEntityID());
-    int numberOfElligableComponents = 0;
-    for (BaseComponent *component : vector) {
-        for (int componentType : mRequiredComponentTypes) {
-            if (component->getType() == componentType)
-                numberOfElligableComponents++;
+    //If the mRequiredComponentTypes is empty that means this system can take any component and process them
+    if (mRequiredComponentTypes.size() > 0) {
+        const std::vector<BaseComponent*> vector = entity.getComponentManager()->getComponentsOfEntity(entity.getEntityID());
+        int numberOfElligableComponents = 0;
+        for (BaseComponent *component : vector) {
+            for (int componentType : mRequiredComponentTypes) {
+                if (component->getType() == componentType)
+                    numberOfElligableComponents++;
+            }
         }
+        isEligible = numberOfElligableComponents > 0;
     }
-    isEligible = numberOfElligableComponents > 0;
+    if (mRequiredGroups.size() > 0) {
+        const std::vector<int> vector = entity.getGroups();
+        int numberOfElligableGroups = 0;
+        for (int group : vector) {
+            for (int requiredGroups : mRequiredGroups) {
+                if (group == requiredGroups)
+                    numberOfElligableGroups++;
+            }
+        }
+        isEligible = numberOfElligableGroups > 0 && isEligible;
+    }
     return isEligible;
 }
 
@@ -73,5 +86,10 @@ void BaseEntitySystem::addEntity(BaseEntity &entity)
 void BaseEntitySystem::setRequiredComponents(std::vector<int> requiredComponentTypes)
 {
     mRequiredComponentTypes = requiredComponentTypes;
+}
+
+void BaseEntitySystem::setRequiredGroups(std::vector<int> requiredGroups)
+{
+    mRequiredGroups = requiredGroups;
 }
 }
