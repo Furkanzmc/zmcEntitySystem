@@ -25,8 +25,11 @@ void EntityManager::removeEntity(int entityID)
 void EntityManager::removeEntitiesInGroup(int groupIdentifier)
 {
     for (std::pair<const int, std::unique_ptr<BaseEntity>> &pair : mEntityMap) {
-        if (pair.second->getGroup() == groupIdentifier)
-            mEntityMap.erase(pair.second->getEntityID());
+        std::vector<int> groups = pair.second->getGroups();
+        for (int group : groups) {
+            if (group == groupIdentifier)
+                mEntityMap.erase(pair.second->getEntityID());
+        }
     }
 }
 
@@ -34,8 +37,11 @@ std::vector<BaseEntity *> EntityManager::getEntitiesInGroup(int groupIdentifier)
 {
     std::vector<BaseEntity*> group;
     for (std::pair<const int, std::unique_ptr<BaseEntity>> &pair : mEntityMap) {
-        if (pair.second->getGroup() == groupIdentifier) {
-            group.push_back(mEntityMap.at(pair.second->getEntityID()).get());
+        std::vector<int> groups = pair.second->getGroups();
+        for (int groupName : groups) {
+            if (groupName == groupIdentifier) {
+                group.push_back(mEntityMap.at(pair.second->getEntityID()).get());
+            }
         }
     }
     return group;

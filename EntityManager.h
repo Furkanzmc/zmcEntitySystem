@@ -20,11 +20,19 @@ public:
      * @return
      */
     template <class E>
-    E * const createEntity(int groupIdentifier)
+    E * const createEntity(int numberOfGroupsToAdd, ...)
     {
         std::unique_ptr<E> entity(new E());
         entity->setEntityID(mLastEntityID++);
-        entity->setGroup(groupIdentifier);
+        std::vector<int> groups;
+        if (numberOfGroupsToAdd > 0) {
+            va_list arguments;
+            va_start(arguments, numberOfGroupsToAdd);
+            for (int x = 0; x < numberOfGroupsToAdd; x++)
+                groups.push_back(va_arg(arguments, int));
+            va_end(arguments);
+            entity->setGroups(groups);
+        }
         entity->setComponentManager(mComponentManager);
         mEntityMap.insert(std::make_pair(mLastEntityID , std::move(entity)));
         assert((void*)dynamic_cast<E*>(mEntityMap.at(mLastEntityID).get()) && "Member does not point to the wanted type!");
