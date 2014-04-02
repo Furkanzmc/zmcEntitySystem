@@ -32,7 +32,10 @@ void BaseComponent::setGroups(int numberOfGroupsToAdd, ...)
 
 void BaseComponent::setGroups(std::vector<int> groups)
 {
-    mComponentGroups = groups;
+    for (int g : groups) {
+        if (isInGroup(g))
+            mComponentGroups.push_back(g);
+    }
 }
 
 bool BaseComponent::isInGroup(int groupIdentifier)
