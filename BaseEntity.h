@@ -37,12 +37,24 @@ public:
      * @brief Set the group of the entity. -1 value means the entity has no group
      * @param groupIdentifier
      */
-    void setGroup(int groupIdentifier);
+    void setGroups(int numberOfGroupsToAdd, ...);
+    void setGroups(std::vector<int> groups);
     /**
-     * @brief Returns a non-zero value if the entity has a group otherwise returns -1
+     * @brief Returns the groups that the entity has
      * @return
      */
-    int getGroup();
+    std::vector<int> getGroups();
+    /**
+     * @brief Returns true if the enitity is in the specified group
+     * @param groupIdentifier
+     * @return
+     */
+    bool isInGroup(int groupIdentifier);
+    /**
+     * @brief Returns true if the entity is in any groups
+     * @return
+     */
+    bool isInAnyGroup();
 
     void setEntityID(int id);
     int getEntityID() const;
@@ -54,9 +66,9 @@ private:
     bool mIsEnabled;
     int mEntityID;
     /**
-     * @brief -1 means the entity has no group
+     * @brief Empty means the entity has no group
      */
-    int mEntityGroup;
+    std::vector<int> mEntityGroups;
     ComponentManager *mComponentManager;
 };
 }

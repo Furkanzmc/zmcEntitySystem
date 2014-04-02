@@ -5,7 +5,6 @@ namespace zmc
 BaseEntity::BaseEntity()
     : mIsEnabled(true)
     , mEntityID(-1)
-    , mEntityGroup(-1)
     , mComponentManager(nullptr)
 {
 
@@ -31,14 +30,37 @@ void BaseEntity::setEnabled(bool enable)
     mIsEnabled = enable;
 }
 
-void BaseEntity::setGroup(int groupIdentifier)
+void BaseEntity::setGroups(int numberOfGroupsToAdd, ...)
 {
-    mEntityGroup = groupIdentifier;
+    va_list arguments;
+    va_start(arguments, numberOfGroupsToAdd);
+    for (int x = 0; x < numberOfGroupsToAdd; x++)
+        mEntityGroups.push_back(va_arg(arguments, int));
+    va_end(arguments);
+
 }
 
-int BaseEntity::getGroup()
+void BaseEntity::setGroups(std::vector<int> groups)
 {
-    return mEntityGroup;
+    mEntityGroups = groups;
+}
+
+std::vector<int> BaseEntity::getGroups()
+{
+    return mEntityGroups;
+}
+
+bool BaseEntity::isInGroup(int groupIdentifier)
+{
+    bool exists = false;
+    if (std::find(mEntityGroups.begin(), mEntityGroups.end(), groupIdentifier) != mEntityGroups.end())
+        exists = true;
+    return exists;
+}
+
+bool BaseEntity::isInAnyGroup()
+{
+    return mEntityGroups.size() > 0;
 }
 
 void BaseEntity::setEntityID(int id)
