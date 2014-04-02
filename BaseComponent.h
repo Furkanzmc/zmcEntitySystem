@@ -32,7 +32,6 @@ public:
     int getType();
 
 private:
-    bool mCanBeRemoved = false;
     std::vector<int> mComponentGroups;
     int mComponentType;
 };
