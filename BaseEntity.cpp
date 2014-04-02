@@ -34,10 +34,12 @@ void BaseEntity::setGroups(int numberOfGroupsToAdd, ...)
 {
     va_list arguments;
     va_start(arguments, numberOfGroupsToAdd);
-    for (int x = 0; x < numberOfGroupsToAdd; x++)
-        mEntityGroups.push_back(va_arg(arguments, int));
+    for (int x = 0; x < numberOfGroupsToAdd; x++) {
+        const int g = va_arg(arguments, int);
+        if (isInGroup(g) == false)
+            mEntityGroups.push_back(g);
+    }
     va_end(arguments);
-
 }
 
 void BaseEntity::setGroups(std::vector<int> groups)
