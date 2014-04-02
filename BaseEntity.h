@@ -61,6 +61,10 @@ public:
      */
     bool isInAnyGroup();
 
+    /**
+     * @brief This function is called by the EntityManager and cannot be called again after the ID has been set
+     * @param id
+     */
     void setEntityID(int id);
     int getEntityID() const;
     void setComponentManager(ComponentManager *componentManager);
