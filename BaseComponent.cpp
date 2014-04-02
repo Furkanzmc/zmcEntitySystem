@@ -23,14 +23,36 @@ void BaseComponent::removeComponent()
     mCanBeRemoved = true;
 }
 
-int BaseComponent::getGroup()
+std::vector<int> BaseComponent::getGroups()
 {
-    return mComponentGroup;
+    return mComponentGroups;
 }
 
-void BaseComponent::setGroup(int groupIdentifier)
+void BaseComponent::setGroups(int numberOfGroupsToAdd, ...)
 {
-    mComponentGroup = groupIdentifier;
+    va_list arguments;
+    va_start(arguments, numberOfGroupsToAdd);
+    for (int x = 0; x < numberOfGroupsToAdd; x++)
+        mComponentGroups.push_back(va_arg(arguments, int));
+    va_end(arguments);
+}
+
+void BaseComponent::setGroups(std::vector<int> groups)
+{
+    mComponentGroups = groups;
+}
+
+bool BaseComponent::isInGroup(int groupIdentifier)
+{
+    bool exists = false;
+    if (std::find(mComponentGroups.begin(), mComponentGroups.end(), groupIdentifier) != mComponentGroups.end())
+        exists = true;
+    return exists;
+}
+
+bool BaseComponent::isInAnyGroup()
+{
+    return mComponentGroups.size() > 0;
 }
 
 int BaseComponent::getType()
