@@ -41,10 +41,10 @@ void BaseEntitySystem::end()
 
 bool BaseEntitySystem::checkForEntity(BaseEntity &entity)
 {
+    //If the mRequiredComponentTypes and mRequiredGroups are empty that means this system can take any component and process them
     if (mRequiredComponentTypes.size() == 0 && mRequiredGroups.size() == 0)
         return true;
     bool isEligible = false;
-    //If the mRequiredComponentTypes is empty that means this system can take any component and process them
     if (mRequiredComponentTypes.size() > 0) {
         const std::vector<BaseComponent*> vector = entity.getComponentManager()->getComponentsOfEntity(entity.getEntityID());
         int numberOfElligableComponents = 0;
@@ -77,7 +77,7 @@ void BaseEntitySystem::removeEntityFromSystem(BaseEntity &entity)
 
 void BaseEntitySystem::addEntity(BaseEntity &entity)
 {
-    //If the entity doesn't have the required components, do nothing
+    //If the entity doesn't have the required components and groups, do nothing
     if (checkForEntity(entity) == false)
         return;
     mEntityVector.push_back(&entity);
