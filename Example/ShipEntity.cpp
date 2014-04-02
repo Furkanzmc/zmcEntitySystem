@@ -14,6 +14,7 @@ ShipEntity::~ShipEntity()
 
 void ShipEntity::update()
 {
+    //Get the component by entity ID and update it.
     MovementComponent *component = getComponentManager()->getComponentOfEntity<MovementComponent>(getEntityID());
     if (component) {
         component->posx += 1;
