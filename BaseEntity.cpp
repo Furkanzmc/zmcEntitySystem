@@ -57,7 +57,7 @@ void BaseEntity::addGroup(int groupIdentifier)
     }
 }
 
-std::vector<int> BaseEntity::getGroups()
+const std::vector<int> &BaseEntity::getGroups()
 {
     return mEntityGroups;
 }

@@ -48,7 +48,7 @@ public:
      * @brief Returns the groups that the entity has
      * @return
      */
-    std::vector<int> getGroups();
+    const std::vector<int>& getGroups();
     /**
      * @brief Returns true if the enitity is in the specified group
      * @param groupIdentifier
