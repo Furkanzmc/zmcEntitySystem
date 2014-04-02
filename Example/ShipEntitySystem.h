@@ -9,7 +9,6 @@ class ShipEntitySystem : public BaseEntitySystem
 public:
     ShipEntitySystem();
     ~ShipEntitySystem();
-    virtual void setRequiredComponentTypes(std::vector<int> requiredComponentTypes);
 
 private:
     virtual bool checkForProcessing();
