@@ -13,16 +13,6 @@ BaseComponent::~BaseComponent()
 
 }
 
-bool BaseComponent::canBeRemoved()
-{
-    return mCanBeRemoved;
-}
-
-void BaseComponent::removeComponent()
-{
-    mCanBeRemoved = true;
-}
-
 std::vector<int> BaseComponent::getGroups()
 {
     return mComponentGroups;

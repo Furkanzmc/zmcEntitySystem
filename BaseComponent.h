@@ -12,8 +12,6 @@ class BaseComponent
 public:
     explicit BaseComponent(int componentType);
     virtual ~BaseComponent();
-    bool canBeRemoved();
-    void removeComponent();
     /**
      * @brief Returns the groups that the cmponent has
      */
