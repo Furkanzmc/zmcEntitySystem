@@ -24,7 +24,8 @@ void BaseEntitySystem::process()
 void BaseEntitySystem::processEntities()
 {
     for (BaseEntity *entity : mEntityVector) {
-        processEntity(*entity);
+        if (entity->isEnabled())
+            processEntity(*entity);
     }
 }
 
