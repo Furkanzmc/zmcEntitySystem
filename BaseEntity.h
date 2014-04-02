@@ -34,11 +34,16 @@ public:
      */
     void setEnabled(bool enable);
     /**
-     * @brief Set the group of the entity. -1 value means the entity has no group
+     * @brief This overwrites the existing groups that the entity has
      * @param groupIdentifier
      */
     void setGroups(int numberOfGroupsToAdd, ...);
     void setGroups(std::vector<int> groups);
+    /**
+     * @brief Adds a group to the already existing groups
+     * @param groupIdentifier
+     */
+    void addGroup(int groupIdentifier);
     /**
      * @brief Returns the groups that the entity has
      * @return

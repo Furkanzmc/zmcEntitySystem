@@ -45,8 +45,15 @@ void BaseEntity::setGroups(int numberOfGroupsToAdd, ...)
 void BaseEntity::setGroups(std::vector<int> groups)
 {
     for (int g : groups) {
-        if (isInGroup(g))
+        if (isInGroup(g) == false)
             mEntityGroups.push_back(g);
+    }
+}
+
+void BaseEntity::addGroup(int groupIdentifier)
+{
+    if (isInGroup(groupIdentifier) == false) {
+        mEntityGroups.push_back(groupIdentifier);
     }
 }
 
