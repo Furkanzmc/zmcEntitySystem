@@ -20,6 +20,7 @@ public:
     void process();
     void removeEntityFromSystem(BaseEntity &entity);
     void addEntity(BaseEntity &entity);
+    void setRequiredComponents(std::vector<int> requiredComponentTypes);
 
 protected:
     /**
@@ -40,9 +41,7 @@ protected:
      * @return
      */
     bool checkForEntity(BaseEntity &entity);
-    virtual void setRequiredComponentTypes(std::vector<int> requiredComponentTypes) = 0;
     virtual void processEntity(BaseEntity &entity) = 0;
-    void setRequiredComponents(std::vector<int> requiredComponentTypes);
 
 private:
     std::vector<BaseEntity*> mEntityVector;
