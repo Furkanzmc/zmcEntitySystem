@@ -1,22 +1,22 @@
-#ifndef BASEENTITY_H
-#define BASEENTITY_H
+#ifndef ENTITY_H
+#define ENTITY_H
 #include <vector>
 #include <memory>
 #include <algorithm>
 
 /**
- * @brief The BaseEntity class: All entity classes must inherit this class
+ * @brief The Entity class: All entity classes must inherit this class
  */
 namespace zmc
 {
 class ComponentManager;
 class BaseComponent;
 
-class BaseEntity
+class Entity
 {
 public:
-    BaseEntity();
-    virtual ~BaseEntity();
+    Entity();
+    virtual ~Entity();
     /**
      * @brief Returns true if the entity is enabled. Enabled entities can be processed by the EntitySystem
      * @return
@@ -81,4 +81,4 @@ private:
     ComponentManager *mComponentManager;
 };
 }
-#endif // BASEENTITY_H
+#endif // ENTITY_H

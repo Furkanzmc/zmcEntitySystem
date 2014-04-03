@@ -2,7 +2,7 @@
 
 namespace zmc
 {
-BaseEntity::BaseEntity()
+Entity::Entity()
     : mIsEnabled(true)
     , mEntityID(-1)
     , mComponentManager(nullptr)
@@ -10,27 +10,27 @@ BaseEntity::BaseEntity()
 
 }
 
-BaseEntity::~BaseEntity()
+Entity::~Entity()
 {
 
 }
 
-bool BaseEntity::isEnabled()
+bool Entity::isEnabled()
 {
     return mIsEnabled;
 }
 
-bool BaseEntity::isDisabled()
+bool Entity::isDisabled()
 {
     return !mIsEnabled;
 }
 
-void BaseEntity::setEnabled(bool enable)
+void Entity::setEnabled(bool enable)
 {
     mIsEnabled = enable;
 }
 
-void BaseEntity::setGroups(int numberOfGroupsToAdd, ...)
+void Entity::setGroups(int numberOfGroupsToAdd, ...)
 {
     va_list arguments;
     va_start(arguments, numberOfGroupsToAdd);
@@ -42,7 +42,7 @@ void BaseEntity::setGroups(int numberOfGroupsToAdd, ...)
     va_end(arguments);
 }
 
-void BaseEntity::setGroups(std::vector<int> groups)
+void Entity::setGroups(std::vector<int> groups)
 {
     for (int g : groups) {
         if (isInGroup(g) == false)
@@ -50,19 +50,19 @@ void BaseEntity::setGroups(std::vector<int> groups)
     }
 }
 
-void BaseEntity::addGroup(int groupIdentifier)
+void Entity::addGroup(int groupIdentifier)
 {
     if (isInGroup(groupIdentifier) == false) {
         mEntityGroups.push_back(groupIdentifier);
     }
 }
 
-const std::vector<int> &BaseEntity::getGroups()
+const std::vector<int> &Entity::getGroups()
 {
     return mEntityGroups;
 }
 
-bool BaseEntity::isInGroup(int groupIdentifier)
+bool Entity::isInGroup(int groupIdentifier)
 {
     bool exists = false;
     if (std::find(mEntityGroups.begin(), mEntityGroups.end(), groupIdentifier) != mEntityGroups.end())
@@ -70,12 +70,12 @@ bool BaseEntity::isInGroup(int groupIdentifier)
     return exists;
 }
 
-bool BaseEntity::isInAnyGroup()
+bool Entity::isInAnyGroup()
 {
     return mEntityGroups.size() > 0;
 }
 
-void BaseEntity::setEntityID(int id)
+void Entity::setEntityID(int id)
 {
     //If ID is already set, do nothing
     if (mEntityID != -1)
@@ -83,24 +83,24 @@ void BaseEntity::setEntityID(int id)
     mEntityID = id;
 }
 
-int BaseEntity::getEntityID() const
+int Entity::getEntityID() const
 {
     return mEntityID;
 }
 
-void BaseEntity::setComponentManager(ComponentManager *componentManager)
+void Entity::setComponentManager(ComponentManager *componentManager)
 {
     if (mComponentManager != nullptr)
         return;
     mComponentManager = componentManager;
 }
 
-zmc::ComponentManager *BaseEntity::getComponentManager()
+zmc::ComponentManager *Entity::getComponentManager()
 {
     return mComponentManager;
 }
 
-bool BaseEntity::hasComponent(int componentType)
+bool Entity::hasComponent(int componentType)
 {
     return mComponentManager->hasComponent(mEntityID, componentType);
 }
