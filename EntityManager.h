@@ -1,6 +1,6 @@
 #ifndef ENTITYMANAGER_H
 #define ENTITYMANAGER_H
-#include "BaseEntity.h"
+#include "Entity.h"
 #include <map>
 #include <memory>
 #include <cassert>
@@ -71,14 +71,14 @@ public:
      * @param groupIdentifier
      * @return
      */
-    std::vector<BaseEntity*> getEntitiesInGroup(int groupIdentifier);
+    std::vector<Entity*> getEntitiesInGroup(int groupIdentifier);
 
 private:
     int mLastEntityID;
     /**
      * @brief int --> Entity ID
      */
-    std::map<int, std::unique_ptr<BaseEntity>> mEntityMap;
+    std::map<int, std::unique_ptr<Entity>> mEntityMap;
     ComponentManager *mComponentManager;
 };
 }
