@@ -15,7 +15,7 @@ class Entity
 {
 public:
     Entity();
-    virtual ~Entity();
+    ~Entity();
     /**
      * @brief Returns true if the entity is enabled. Enabled entities can be processed by the EntitySystem
      * @return
