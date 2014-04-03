@@ -1,10 +1,11 @@
 #ifndef COMPONENTMANAGER_H
 #define COMPONENTMANAGER_H
 #include "BaseComponent.h"
-#include "BaseEntity.h"
+#include "Entity.h"
 #include <memory>
 #include <map>
 #include <algorithm>
+#include <iostream>
 
 /**
  * @brief The ComponentManager class: Manages the creation and removal of all components. Use this class to add components to entities.
@@ -30,12 +31,12 @@ public:
     /**
      * @brief Remove a type of component from the entity
      */
-    void removeComponentOfEntity(int componentType, BaseEntity &entity);
+    void removeComponentOfEntity(int componentType, Entity &entity);
     /**
      * @brief Removes all of the compoenents from the entity
      * @param entity
      */
-    void removeComponentsOfEntity(BaseEntity &entity);
+    void removeComponentsOfEntity(Entity &entity);
     std::vector<BaseComponent*> getComponentsOfEntity(int entityID);
     template <class Com>
     Com * const getComponentOfEntity(int entityID)
@@ -57,6 +58,7 @@ public:
      * @return
      */
     bool hasComponent(int entityID, int componentType);
+
     /**
      * @brief Removes all of the components from the ComponentManager
      */

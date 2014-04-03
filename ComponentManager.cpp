@@ -29,7 +29,7 @@ void ComponentManager::removeComponent(int entityID, int componentType)
     }
 }
 
-void ComponentManager::removeComponentOfEntity(int componentType, BaseEntity &entity)
+void ComponentManager::removeComponentOfEntity(int componentType, Entity &entity)
 {
     mComponentsMap.erase(std::begin(mComponentsMap), std::find_if(std::begin(mComponentsMap), std::end(mComponentsMap),
     [&componentType, entity](std::pair<const int, std::unique_ptr<BaseComponent>> &pair) {
@@ -37,7 +37,7 @@ void ComponentManager::removeComponentOfEntity(int componentType, BaseEntity &en
     }));
 }
 
-void ComponentManager::removeComponentsOfEntity(BaseEntity &entity)
+void ComponentManager::removeComponentsOfEntity(Entity &entity)
 {
     for (std::pair<const int, std::unique_ptr<BaseComponent>> &pair : mComponentsMap) {
         if (pair.first == entity.getEntityID()) {
