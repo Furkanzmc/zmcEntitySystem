@@ -23,7 +23,7 @@ void BaseEntitySystem::process()
 
 void BaseEntitySystem::processEntities()
 {
-    for (BaseEntity *entity : mEntityVector) {
+    for (Entity *entity : mEntityVector) {
         if (entity->isEnabled())
             processEntity(*entity);
     }
@@ -39,7 +39,7 @@ void BaseEntitySystem::end()
 
 }
 
-bool BaseEntitySystem::checkForEntity(BaseEntity &entity)
+bool BaseEntitySystem::checkForEntity(Entity &entity)
 {
     //If the mRequiredComponentTypes and mRequiredGroups are empty that means this system can take any component and process them
     if (mRequiredComponentTypes.size() == 0 && mRequiredGroups.size() == 0)
@@ -70,12 +70,12 @@ bool BaseEntitySystem::checkForEntity(BaseEntity &entity)
     return isEligible;
 }
 
-void BaseEntitySystem::removeEntityFromSystem(BaseEntity &entity)
+void BaseEntitySystem::removeEntityFromSystem(Entity &entity)
 {
     mEntityVector.erase(std::find(std::begin(mEntityVector), std::end(mEntityVector), &entity));
 }
 
-void BaseEntitySystem::addEntity(BaseEntity &entity)
+void BaseEntitySystem::addEntity(Entity &entity)
 {
     //If the entity doesn't have the required components and groups, do nothing
     if (checkForEntity(entity) == false)
