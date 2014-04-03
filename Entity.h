@@ -10,7 +10,6 @@
 namespace zmc
 {
 class ComponentManager;
-class BaseComponent;
 
 class Entity
 {
