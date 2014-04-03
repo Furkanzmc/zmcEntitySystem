@@ -19,37 +19,14 @@ public:
      * @param groupIdentifier
      * @return
      */
-    template <class E>
-    E * const createEntity(int numberOfGroupsToAdd, ...)
-    {
-        std::unique_ptr<E> entity(new E());
-        entity->setEntityID(mLastEntityID++);
-        std::vector<int> groups;
-        if (numberOfGroupsToAdd > 0) {
-            va_list arguments;
-            va_start(arguments, numberOfGroupsToAdd);
-            for (int x = 0; x < numberOfGroupsToAdd; x++)
-                groups.push_back(va_arg(arguments, int));
-            va_end(arguments);
-            entity->setGroups(groups);
-        }
-        entity->setComponentManager(mComponentManager);
-        mEntityMap.insert(std::make_pair(mLastEntityID , std::move(entity)));
-        assert((void*)dynamic_cast<E*>(mEntityMap.at(mLastEntityID).get()) && "Member does not point to the wanted type!");
-        return static_cast<E*>(mEntityMap.at(mLastEntityID).get());
-    }
+    Entity* createEntity(int numberOfGroupsToAdd, ...);
 
     /**
      * @brief Returns a pointer to the entity with the specified ID. Template is used for dynamic casting
      * @param entityID
      * @return
      */
-    template <class Entity>
-    Entity* const getEntity(int entityID)
-    {
-        assert((void*)dynamic_cast<Entity*>(mEntityMap.at(entityID).get()) && "Member does not point to the wanted type!");
-        return static_cast<Entity*>(mEntityMap.at(entityID).get());
-    }
+    Entity* getEntity(int entityID);
 
     /**
      * @brief Returns the number of entites in the manager
