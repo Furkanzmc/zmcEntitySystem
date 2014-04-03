@@ -6,7 +6,7 @@ ComponentManager::ComponentManager()
 {
 }
 
-void ComponentManager::addComponent(int entityID, std::unique_ptr<BaseComponent> compoenent)
+void ComponentManager::addComponent(int entityID, std::unique_ptr<BaseComponent> component)
 {
     mComponentsMap.insert(std::make_pair(entityID, std::move(compoenent)));
     compoenent.reset();

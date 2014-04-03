@@ -19,7 +19,7 @@ public:
     /**
      * @brief Adds a component to the entity
      */
-    void addComponent(int entityID, std::unique_ptr<BaseComponent> compoenent);
+    void addComponent(int entityID, std::unique_ptr<BaseComponent> component);
     /**
      * @brief Remove a type of component from all the entities
      */
