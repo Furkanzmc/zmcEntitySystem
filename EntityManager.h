@@ -22,11 +22,18 @@ public:
     Entity* createEntity(int numberOfGroupsToAdd, ...);
 
     /**
-     * @brief Returns a pointer to the entity with the specified ID. Template is used for dynamic casting
+     * @brief Returns a pointer to the entity with the specified ID.
      * @param entityID
      * @return
      */
     Entity* getEntity(int entityID);
+    /**
+     * @brief Returns a pointer to the entity with the specified identifier. If no entity is found with the given identifier
+     * , returns nullptr
+     * @param identifier
+     * @return
+     */
+    Entity* getEntityByCustomIdentifier(int identifier);
 
     /**
      * @brief Returns the number of entites in the manager

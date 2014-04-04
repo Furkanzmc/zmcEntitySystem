@@ -32,6 +32,17 @@ Entity* EntityManager::getEntity(int entityID)
     return mEntityMap.at(entityID).get();
 }
 
+Entity* EntityManager::getEntityByCustomIdentifier(int identifier)
+{
+    Entity *returnEntity = nullptr;
+    for (std::pair<const int, std::unique_ptr<Entity>> &pair : mEntityMap) {
+        if (pair.second->getCustomIdentifier() == identifier) {
+            returnEntity = pair.second.get();
+        }
+    }
+    return returnEntity;
+}
+
 int EntityManager::getEntityCount()
 {
     return mEntityMap.size();

@@ -69,6 +69,8 @@ public:
     void setComponentManager(ComponentManager *componentManager);
     ComponentManager *getComponentManager();
     bool hasComponent(int componentType);
+    void setCustomIdentifier(int identifier);
+    int getCustomIdentifier();
 
 private:
     bool mIsEnabled;
@@ -78,6 +80,11 @@ private:
      */
     std::vector<int> mEntityGroups;
     ComponentManager *mComponentManager;
+    /**
+     * @brief A custom identifier to acess the entity with an enumerator
+     */
+    int mCustomIndentifier;
+
 };
 }
 #endif // ENTITY_H

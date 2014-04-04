@@ -104,4 +104,14 @@ bool Entity::hasComponent(int componentType)
 {
     return mComponentManager->hasComponent(mEntityID, componentType);
 }
+
+void Entity::setCustomIdentifier(int identifier)
+{
+    mCustomIndentifier = identifier;
+}
+
+int Entity::getCustomIdentifier()
+{
+    return mCustomIndentifier;
+}
 }
