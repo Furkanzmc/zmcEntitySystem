@@ -5,7 +5,7 @@
 #include <algorithm>
 
 /**
- * @brief The Entity class: All entity classes must inherit this class
+ * @brief The Entity class
  */
 namespace zmc
 {
